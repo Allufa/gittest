@@ -1,0 +1,375 @@
+//<МИКСИНЫ>===============================================================================================
+@mixin anim($time, $delay) {
+    -webkit-transition: all $time ease $delay;
+    -moz-transition: all $time ease $delay;
+    -ms-transition: all $time ease $delay;
+    -o-transition: all $time ease $delay;
+    transition: all $time ease $delay;
+}
+
+@mixin anim_cubic($time, $delay) {
+    -webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -ms-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+}
+
+@mixin rotate($deg) {
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -webkit-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin scale($num) {
+    -moz-transform: scale($num);
+    -ms-transform: scale($num);
+    -webkit-transform: scale($num);
+    -o-transform: scale($num);
+    transform: scale($num);
+}
+
+@mixin skew($num) {
+    -webkit-transform: skewX($num);
+    -moz-transform: skewX($num);
+    -ms-transform: skewX($num);
+    -o-transform: skewX($num);
+    transform: skewX($num);
+}
+
+@mixin cnt($h) {
+    display: flex;
+    flex-direction: column;
+    height: $h;
+    text-align: center;
+    align-items: stretch;
+    justify-content: center;
+}
+
+@mixin tr($x, $y, $z) {
+    transform: translate3d($x, $y, $z);
+}
+
+;
+@mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    font-size: 0;
+}
+
+@mixin flexorder($val) {
+    -webkit-box-ordinal-group: $val;
+    -moz-box-ordinal-group: $val;
+    -ms-flex-order: $val;
+    -webkit-order: $val;
+    order: $val;
+}
+
+//</МИКСИНЫ>===============================================================================================
+//<ШРИФТЫ>===============================================================================================
+//<Подключаем шрифты>=======================================================================================
+//</Подключаем шрифты>=======================================================================================
+//<Шрифт по умолчанию>==========================================================================================
+$fontfamily:arial;
+//</Шрифт по умолчанию>==========================================================================================
+//</ШРИФТЫ>=======================================================================================================
+//<ПЕРЕМЕННЫЕ>===========================================================================================================
+$minwidth:320px;
+$mw:1170;
+$md1:$mw+12;
+$md2:992.98;
+$md3:767.98;
+$md4:479.98;
+//</ПЕРЕМЕННЫЕ>===========================================================================================================
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-width: $minwidth;
+    position: relative;
+    width: 100%;
+    color: #000;
+}
+
+body {
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    font-family: $fontfamily;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    &.lock {
+        overflow: hidden;
+        @media (max-width: $md3+px) {
+            width: 100%;
+            //position: fixed;
+            overflow: hidden;
+        }
+    }
+}
+
+input,
+button,
+textarea {
+    font-family: $fontfamily;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+//<ОБОЛОЧКА>===========================================================================================================
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    &.loaded {}
+}
+
+//</ОБОЛОЧКА>===========================================================================================================
+//<ОСНОВНАЯ СЕТКА>===========================================================================================================
+.container {
+    max-width: $mw+px;
+    margin: 0 auto;
+    width: 100%;
+    @media (max-width: $md1+px) {
+        max-width: 970px;
+    }
+    @media (max-width:$md2+px) {
+        max-width: 750px;
+    }
+    @media (max-width:$md3+px) {
+        max-width: none;
+        padding: 0 10px;
+    }
+}
+
+//</ОСНОВНАЯ СЕТКА>===========================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+@import "popup.scss";
+@import "header.scss";
+@import "footer.scss";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 50;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #5e5373;
+        z-index: 2;
+    }
+    &__body {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        align-items: center;
+        @media (max-width: $md3+px) {
+            height: 50px;
+        }
+    }
+    &__logo {
+        flex: 0 0 60px;
+        @media (max-width: $md3+px) {
+            flex: 0 0 40px;
+        }
+        position: relative;
+        z-index: 3;
+        img {
+            max-width: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    }
+    &__burger {
+        @media (max-width: $md3+px) {
+            display: block;
+            position: relative;
+            z-index: 3;
+            width: 30px;
+            height: 20px;
+            &.active:before {
+                transform: rotate(45deg);
+                top: 9px;
+            }
+            &.active:after {
+                transform: rotate(-45deg);
+                bottom: 9px;
+            }
+            &.active span {
+                transform: scale(0);
+            }
+            &:before,
+            &:after {
+                content: '';
+                background-color: #fff;
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                left: 0;
+                transition: all 0.3s ease 0s;
+            }
+            &:before {
+                top: 0;
+            }
+            &:after {
+                bottom: 0;
+            }
+            span {
+                content: '';
+                background-color: #fff;
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                top: 9px;
+                transition: all 0.3s ease 0s;
+            }
+        }
+    }
+    &__menu {
+        @media (max-width: $md3+px) {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: #18b5a4;
+            padding: 70px 10px 20px 10px;
+            transition: all 0.3s ease 0s;
+            &.active {
+                top: 0;
+            }
+        }
+    }
+    &__list {
+        display: flex;
+        position: relative;
+        z-index: 2;
+        @media (max-width: $md3+px) {
+            display: block;
+        }
+        li {
+            margin-left: 20px;
+            @media (max-width: $md3+px) {
+                margin: 0 0 20px 0;
+            }
+        }
+    }
+    &__link {
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 18px;
+        text-decoration: none;
+    }
+}
+
+.container {}
+
+// контент страницы
+.wrapper {}
+
+.content {
+    padding-top: 100px;
+    @media (max-width: $md3+px) {
+        padding-top: 60px;
+    }
+    &__text {
+        font-size: 24px;
+        p {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+//</ОСНОВНОЙ БЛОК>====================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+@import "forms.scss";
+@import "ui.scss";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================

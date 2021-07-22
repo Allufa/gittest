@@ -1,110 +1,242 @@
-// Файл обнуляющих стилей
-@import "nullstyle.scss";
+//<МИКСИНЫ>===============================================================================================
+@mixin anim($time, $delay) {
+    -webkit-transition: all $time ease $delay;
+    -moz-transition: all $time ease $delay;
+    -ms-transition: all $time ease $delay;
+    -o-transition: all $time ease $delay;
+    transition: all $time ease $delay;
+}
 
+@mixin anim_cubic($time, $delay) {
+    -webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -ms-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+}
 
-.wrapper {
-	height: 100%;
-	overflow: hidden;
-	min-height: 100%;
-	padding: 50px;
+@mixin rotate($deg) {
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -webkit-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin scale($num) {
+    -moz-transform: scale($num);
+    -ms-transform: scale($num);
+    -webkit-transform: scale($num);
+    -o-transform: scale($num);
+    transform: scale($num);
+}
+
+@mixin skew($num) {
+    -webkit-transform: skewX($num);
+    -moz-transform: skewX($num);
+    -ms-transform: skewX($num);
+    -o-transform: skewX($num);
+    transform: skewX($num);
+}
+
+@mixin cnt($h) {
+    display: flex;
+    flex-direction: column;
+    height: $h;
+    text-align: center;
+    align-items: stretch;
+    justify-content: center;
+}
+
+@mixin tr($x, $y, $z) {
+    transform: translate3d($x, $y, $z);
+}
+
+;
+@mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    font-size: 0;
+}
+
+@mixin flexorder($val) {
+    -webkit-box-ordinal-group: $val;
+    -moz-box-ordinal-group: $val;
+    -ms-flex-order: $val;
+    -webkit-order: $val;
+    order: $val;
+}
+
+//</МИКСИНЫ>===============================================================================================
+//<ШРИФТЫ>===============================================================================================
+//<Подключаем шрифты>=======================================================================================
+//</Подключаем шрифты>=======================================================================================
+//<Шрифт по умолчанию>==========================================================================================
+$fontfamily:"";
+//</Шрифт по умолчанию>==========================================================================================
+//</ШРИФТЫ>=======================================================================================================
+//<ПЕРЕМЕННЫЕ>===========================================================================================================
+$minwidth:320px;
+$mw:1170;
+$md1:$mw+12;
+$md2:992.98;
+$md3:767.98;
+$md4:479.98;
+//</ПЕРЕМЕННЫЕ>===========================================================================================================
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-width: $minwidth;
+    position: relative;
+    width: 100%;
+    color: #000;
 }
 
 body {
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-
-}
-.block {
-
-}
-
-.block__row { 
-	display:flex;
-	justify-content: space-between;	
-	flex-direction: column;
-	border: 20px solid #ece89d;
-	margin: 0 0 20px 0;
-height: 1000px;
-}
-.block__colomn { 
-	
-	
-	border: 20px solid #5e5373;
-	text-align: center;
- }
-.block__item { 
-	
-		
-	background-color: #18b5a4;
-	padding: 50px;
-	font-size: 50px;
-	color: #fff;
-	font-weight: 700;
- }
-
-.block__colomn_1 {
-
-     
-    
- }
-.block__colomn_2 {
-	
-	 
- }
-.block__colomn_3 {
-	
-	
-	 
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    font-family: $fontfamily;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    &.lock {
+        overflow: hidden;
+        @media (max-width: $md3+px) {
+            width: 100%;
+            position: fixed;
+            overflow: hidden;
+        }
+    }
 }
 
-
-
-
-
-
-
-/*
-// Переменные для блока
-$fz:100px;
-$color_1:#000;
-$color_2:#fff;
-
-// Шаблон №1
-.tplborder{
-	font-size: 100px;
-	border-bottom: 5px dashed red;
+input,
+button,
+textarea {
+    font-family: $fontfamily;
 }
-@mixin fontz($f,$c){
-	font-size: $f;
-	color: $c;
+
+input::-ms-clear {
+    display: none;
 }
-.block{
-	width: 300px / 960px * 100%;
-	background-color: #666;
-	padding: 30px;
-	line-height: 60px;
-	.block__text{
-		font-size: $fz;
-		span{
-			color: green;
-		}
-	}
+
+button {
+    cursor: pointer;
 }
-.link{
-	@include fontz(80px,green);
-	color: $color_1;
-	text-decoration: underline;
-	font-size: $fz;
-	.block &{
-		font-size: $fz;
-	}
-	&:hover{
-		color: $color_2;
-	}
-	@extend .tplborder;
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
 }
-.link-2{
-	@include fontz(50px,green);
-	border-bottom: 5px dashed #000;
-	@extend .tplborder;
+
+a,
+a:visited {
+    text-decoration: none;
 }
-*/
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+//<ОБОЛОЧКА>===========================================================================================================
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    &.loaded {}
+}
+
+//</ОБОЛОЧКА>===========================================================================================================
+//<ОСНОВНАЯ СЕТКА>===========================================================================================================
+.container {
+    max-width: $mw+px;
+    margin: 0 auto;
+    width: 100%;
+    @media (max-width: $md1+px) {
+        max-width: 970px;
+    }
+    @media (max-width:$md2+px) {
+        max-width: 750px;
+    }
+    @media (max-width:$md3+px) {
+        max-width: none;
+        padding: 0 10px;
+    }
+}
+
+//</ОСНОВНАЯ СЕТКА>===========================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+@import "popup.scss";
+@import "header.scss";
+@import "footer.scss";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+p {
+    color: green;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+//====================================================================================================
+//</ОСНОВНОЙ БЛОК>====================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+@import "forms.scss";
+@import "ui.scss";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
