@@ -1,5 +1,45 @@
-footer{}
-//====================================================================================================
+footer {}
 
 //====================================================================================================
+.footer {
+    &__body {
+        height: 130px;
+        @include flexbox();
+        justify-content: space-between;
+        align-items: center;
+        @media (max-width: 600px) {
+            display: block;
+            text-align: center;
+            height: auto;
+            padding: 20px 0;
+        }
+    }
+    &__column {}
+    &__copy {
+        font-weight: bold;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #646667;
+        @media (max-width: $md3+px) {
+            margin: 15px 10px 0px 10px;
+        }
+    }
+    &__link {
+        font-weight: bold;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #646667;
+        margin-left: 30px;
+        display: inline-block;
+        &:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: $md3+px) {
+            margin: 15px 10px 0px 10px;
+        }
+    }
+}
 
+//====================================================================================================
