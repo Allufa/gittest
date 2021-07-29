@@ -1,0 +1,396 @@
+//<МИКСИНЫ>===============================================================================================
+@mixin anim($time, $delay) {
+    -webkit-transition: all $time ease $delay;
+    -moz-transition: all $time ease $delay;
+    -ms-transition: all $time ease $delay;
+    -o-transition: all $time ease $delay;
+    transition: all $time ease $delay;
+}
+
+@mixin anim_cubic($time, $delay) {
+    -webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -ms-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    -o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+    transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+}
+
+@mixin rotate($deg) {
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -webkit-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin scale($num) {
+    -moz-transform: scale($num);
+    -ms-transform: scale($num);
+    -webkit-transform: scale($num);
+    -o-transform: scale($num);
+    transform: scale($num);
+}
+
+@mixin skew($num) {
+    -webkit-transform: skewX($num);
+    -moz-transform: skewX($num);
+    -ms-transform: skewX($num);
+    -o-transform: skewX($num);
+    transform: skewX($num);
+}
+
+@mixin cnt($h) {
+    display: flex;
+    flex-direction: column;
+    height: $h;
+    text-align: center;
+    align-items: stretch;
+    justify-content: center;
+}
+
+@mixin tr($x, $y, $z) {
+    transform: translate3d($x, $y, $z);
+}
+
+;
+@mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    font-size: 0;
+}
+
+@mixin flexorder($val) {
+    -webkit-box-ordinal-group: $val;
+    -moz-box-ordinal-group: $val;
+    -ms-flex-order: $val;
+    -webkit-order: $val;
+    order: $val;
+}
+
+//</МИКСИНЫ>===============================================================================================
+//<ШРИФТЫ>===============================================================================================
+//<Подключаем шрифты>=======================================================================================
+//</Подключаем шрифты>=======================================================================================
+//<Шрифт по умолчанию>==========================================================================================
+$fontfamily:"";
+//</Шрифт по умолчанию>==========================================================================================
+//</ШРИФТЫ>=======================================================================================================
+//<ПЕРЕМЕННЫЕ>===========================================================================================================
+$minwidth:320px;
+$mw:1170;
+$md1:$mw+12;
+$md2:992.98;
+$md3:767.98;
+$md4:479.98;
+//</ПЕРЕМЕННЫЕ>===========================================================================================================
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section {
+    display: block;
+}
+
+input,
+button,
+textarea {
+    font-family: $fontfamily;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+//<ОБОЛОЧКА>===========================================================================================================
+//</ОБОЛОЧКА>===========================================================================================================
+//<ОСНОВНАЯ СЕТКА>===========================================================================================================
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template: minmax(100px, auto) 1fr minmax(70px, auto) /1fr;
+    grid-template-areas: "header" "main" "footer";
+    background-color: darkslategrey;
+}
+
+.header {
+    padding: 15px;
+    grid-area: header;
+    background-color: #794f45;
+    display: grid;
+    align-items: center;
+    grid-template: 1fr/1fr minmax(auto, 300px) minmax(auto, 1100px) 1fr;
+    &__logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #fff;
+        grid-column: 2/3;
+    }
+    &__menu {
+        grid-column: 3/4;
+    }
+    &__list {
+        @media (max-width: 992px) {
+            display: none;
+        }
+        display: grid;
+        grid-auto-flow: column;
+        justify-items: end;
+        align-items: center;
+        & li {
+            margin: 0 0 0 30px;
+        }
+    }
+    &__link {
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+    }
+    &__burger {}
+}
+
+.main {
+    padding: 30px 15px;
+    @media (min-width: 992px) {
+        display: grid;
+        grid-area: main;
+        grid-template: 1fr/1fr minmax(auto, 300px) minmax(auto, 1100px) 1fr;
+    }
+}
+
+.sidebar {
+    background-color: rgb(81, 148, 98);
+    padding: 30px 15px;
+    margin: 0 0 30px 0;
+    @media (min-width: 992px) {
+        grid-column: 2/3;
+        margin: 0px;
+    }
+    &__menu {}
+    &__list {
+        & li {
+            margin: 0px 0px 15px 0px;
+            text-align: center;
+        }
+    }
+    &__link {
+        font-family: arial;
+        color: darkturquoise;
+        font-size: 20px;
+    }
+}
+
+.content {
+    padding: 0 0 0 0px;
+    @media (min-width: 992px) {
+        padding: 0 0 0 30px;
+        grid-column: 3/4;
+    }
+    &__title {
+        font-family: arial;
+        font-size: 48px;
+        padding: 15px;
+        color: floralwhite;
+    }
+    &__gallery {
+        margin: 0 0 30px 0;
+    }
+    &__products {}
+}
+
+.gallery {
+    &__title {
+        font-family: arial;
+        font-size: 38px;
+        padding: 15px;
+        color: floralwhite;
+    }
+    &__items {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    &__item {
+        position: relative;
+        padding: 0px 0px 85% 0px;
+        & img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__item-big {
+        grid-column: span 1;
+        grid-row: span 1;
+        @media (min-width: 767px) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+    }
+}
+
+.products {
+    &__title {
+        font-family: arial;
+        font-size: 48px;
+        padding: 15px;
+        color: floralwhite;
+    }
+    &__items {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 50px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    &__item {
+        display: grid;
+        grid-auto-flow: row;
+        grid-template: auto 1fr minmax(40px, auto)/1fr;
+    }
+    &__image {
+        position: relative;
+        padding: 0 0 90% 0;
+        margin: 0 0 20px 0;
+        & img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+        }
+    }
+    &__name {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 24px;
+        color: gainsboro;
+        line-height: 30px;
+        margin: 0 0 20px 0;
+        ;
+    }
+    &__button {
+        color: gainsboro;
+        letter-spacing: 2px;
+        text-decoration: none;
+        background-color: rgb(136, 44, 44);
+        padding: 0 20px;
+        line-height: 40px;
+        justify-self: center;
+    }
+}
+
+.footer {
+    @media (max-width: 550px) {
+        grid-template: 1fr 1fr/1fr;
+    }
+    color: gold;
+    align-items: center;
+    grid-area: footer;
+    background-color: #77608d;
+    display: grid;
+    grid-template: 1fr / 1fr minmax(auto, 300px) minmax(auto, 1100px) 1fr;
+    padding: 15px;
+    &__copy {
+        @media (min-width: 550px) {
+            grid-column: 2/3;
+        }
+        @media (max-width: 550px) {
+            text-align: center;
+            order: 2;
+        }
+    }
+    &__text {
+        @media (min-width: 550px) {
+            grid-column: 3/4;
+            text-align: right;
+        }
+        @media (max-width: 550px) {
+            text-align: center;
+            order: 1;
+        }
+    }
+}
+
+//</ОСНОВНАЯ СЕТКА>===========================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+p {
+    color: green;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+//====================================================================================================
+//</ОСНОВНОЙ БЛОК>====================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+@import "forms.scss";
+@import "ui.scss";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
