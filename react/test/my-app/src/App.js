@@ -1,20 +1,17 @@
-import logo from './logo.svg';
+
 import './App.css';
-/*import Header from './header.js';*/
-import Technologies from './technologies.js';
-import Header from './header';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
 
-const App = () => {
+function App() {
 	return (
-		<div className="App-header">
+		<div className='app-wrapper'>
 			<Header />
-			<Technologies />
-			<Header />
-
-			<br />
+			<Navbar />
+			<Profile />
 
 		</div>
-
 	);
 }
 
