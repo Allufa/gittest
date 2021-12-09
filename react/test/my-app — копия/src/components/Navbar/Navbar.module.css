@@ -1,0 +1,13 @@
+.nav {
+    background: chocolate;
+    padding: 10px;
+}
+
+.nav a {
+    text-decoration: none;
+}
+
+.activelink {
+    color: honeydew;
+    font-weight: 700;
+}
