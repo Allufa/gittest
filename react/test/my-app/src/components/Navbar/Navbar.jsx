@@ -15,4 +15,4 @@ const Navbar = () => {
 export default Navbar;
 
 
-/*{`${classes.item} ${classes.active}`*/
+/*{`${classes.item} ${classes.active}` два класса*/

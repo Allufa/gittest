@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .block {
+            width: 50px;
+            height: 50px;
+            margin: 50px;
+            display: inline-block;
+            border: 2px solid red;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        
+        .active {
+            background-color: red;
+        }
+        
+        .dblactive {
+            background-color: green;
+        }
+        
+        .rightclick {
+            background-color: blue;
+        }
+        
+        .size {
+            width: 100px;
+            transition: all 0.5s;
+        }
+        
+        progress {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>mouse</h1>
+
+
+    <div class="block one">one</div>
+    <div class="block two">two</div>
+    <div class="block three">three</div>
+    <div class="block four">four</div>
+    <hr>
+    <br>
+    <progress value="10" max="100"></progress>
+    <br>
+    <br>
+    <button>progress</button>
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>
