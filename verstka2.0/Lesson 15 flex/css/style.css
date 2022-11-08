@@ -1,0 +1,232 @@
+/* 
+&display=swap
+&subset=cyrillic-ext 
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:regular,500,700,900&display=swap");
+
+/* ОБНУЛЕНИЕ СТИЛЕЙ */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+img {
+    vertical-align: top;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    /* по умолчанию */
+    /* font-size: 16px; */
+}
+
+body {
+    line-height: 1;
+    color: #4b4b4b;
+    font-family: "Roboto";
+    background-color: #b8b4b4;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*
+	.header-menu__icon{
+		display: block;
+		position: absolute;
+		top: 18px;
+		right: 10px;
+		width:30px;
+		height: 18px;
+		cursor: pointer;
+		z-index: 5;
+		span{@include anim(0.3s,0s);top: 8px;left: 0px;position: absolute;width: 100%;height: 2px;background-color: #000;
+			&:first-child{top: 0px;}
+			&:last-child{top: auto;bottom: 0px;}
+		}
+		&.active{
+			span{@include scale(0);
+				&:first-child{@include rotate(-45deg);top: 8px;}
+				&:last-child{@include rotate(45deg);bottom: 8px;}
+			}
+		}
+	}
+*/
+
+[class*="__container"] {
+    width: 1020px;
+    margin: 0 auto;
+    background-color: #858484;
+    height: 100%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    color: aqua;
+}
+
+.header,
+.footer {
+    height: 50px;
+    background-color: beige;
+}
+
+.main {
+    flex: 1 1 auto;
+    background-color: rgb(147, 21, 21);
+    display: flex;
+    flex-direction: column;
+}
+
+.main__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #4b4b4b;
+    flex: 1 1 auto;
+}
+
+form {
+    color: white;
+}
+
+.main__form {
+    margin: 50px 0 100px 0;
+}
+
+.form {}
+
+.form__line {
+    padding: 10px 0px;
+}
+
+.form__line:not(:last-child) {
+    margin: 0 0 10px 0;
+}
+
+.form__label {
+    display: block;
+    margin: 0 0 10px 0;
+}
+
+.form__input {
+    height: 40px;
+    width: 100%;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+.form__button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkbox {
+    position: relative;
+}
+
+.checkbox__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.checkbox__input:focus+.checkbox__label {
+    outline: 0px solid #fff;
+}
+
+.checkbox__input:checked+.checkbox__label::before {
+    background-color: green;
+}
+
+.checkbox__label {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox__label::before {
+    align-self: flex-start;
+    content: "";
+    flex: 0 0 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file {
+    position: relative;
+}
+
+.file__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    font-size: 0;
+}
+
+.file__label {
+    cursor: pointer;
+    background-color: green;
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.select {
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    background-color: green;
+    border-radius: 5px;
+}
+
+.form__textarea {
+    width: 100px;
+    height: 50px;
+    resize: vertical;
+    background-color: green;
+    resize: none;
+}

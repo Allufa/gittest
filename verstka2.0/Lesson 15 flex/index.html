@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Lesson 16</title>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container">
+                я шапка
+            </div>
+        </header>
+        <main class="main">
+            <div class="main__container">
+
+
+                <form action="" method="get" enctype="multipart/form-data">
+                    <label for="input_01">Имя пользователя (подпись к полю)</label>
+                    <input tabindex="10" id="input_01" autocomplete="off" name="username" type="text" value="" required maxlength="10" placeholder="Строка">
+                    <br>
+                    <br>
+
+                    <input tabindex="9" autocomplete="off" name="username" type="number" value="" required maxlength="10" placeholder="Число">
+                    <br>
+                    <br>
+                    <input tabindex="8" disabled name="password" type="password" required placeholder="Пароль">
+                    <br>
+                    <br>
+                    <input tabindex="7" type="tel" name="phone" required placeholder="Телефон">
+                    <br>
+                    <br>
+                    <input tabindex="6" type="email" name="email" required placeholder="почта" id="">
+                    <br>
+                    <br>
+                    <input tabindex="5" type="datetime-local" name="datetime" required>
+                    <br>
+                    <br>
+                    <input tabindex="4" type="checkbox" required name="check" value="yes"> Есть машина?
+                    <br>
+                    <br>
+                    <input tabindex="3" type="radio" name="gender" required value="male" checked autocomplete="off"> М
+                    <input tabindex="2" type="radio" name="gender" required value="female" autocomplete="off"> Ж
+                    <div>
+                        <input tabindex="1" type="range" name="range">
+                    </div>
+                    <div>
+                        <input tabindex="-1" type="file" name="file" multiple accept=".jpg,.png" id="">
+                    </div>
+                    <div>
+                        <textarea name="text" rows="5">
+									texttext
+									text 
+									
+								</textarea>
+                    </div>
+                    <div>
+                        <select multiple name="select" id="">
+								<option selected value="1">Пункт 1</option>
+								<option value="2">Пункт 2</option>
+								<option selected value="3">Пункт 3</option>
+								<option value="4">Пункт 4</option>
+							</select>
+                    </div>
+                    <div><button type="reset">очистка</button></div>
+                    <div><button type="submit"> я кнопка</button></div>
+                </form>
+                <br>
+                <br>
+                <div style="width: 300px;">
+                    <form class="main__form form" action="#">
+                        <div class="form__line">
+                            <label for="username" class="form__label"> Введите имя</label>
+                            <input type="text" name="username" id="username" class="form__input">
+                        </div>
+                        <div class="form__line">
+                            <div class="checkbox">
+                                <input type="checkbox" class="checkbox__input" autocomplete="off" name="car" id="car" value="true">
+                                <label for="car" class="checkbox__label"> Автомобиль?</label>
+                            </div>
+                        </div>
+                        <div class="form__line">
+                            <div class="file">
+                                <input type="file" class="file__input" name="" id="file__1">
+                                <label class="file__label" for="file__1">выбери файл</label>
+                            </div>
+                        </div>
+                        <div class="form__line">
+                            <select class="select" name="select" id="">
+										<option selected value="1">Пункт 1</option>
+										<option value="2">Пункт 2</option>
+										<option selected value="3">Пункт 3</option>
+										<option value="4">Пункт 4</option>
+									</select>
+                        </div>
+                        <div class="form__line">
+                            <textarea name="text" id="" class="form__textarea"></textarea>
+                        </div>
+                        <button class="form__button" type="submit">я кнопка действие </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer__container">я футер
+                <span class="ter">asdfgafdgadfgafdg</span>
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.querySelector('.products__image').onmouseover = function(event) {
+            console.log(this.children[0])
+            this.children[0].classList.remove('hoverend');
+            this.children[0].classList.add('hover');
+        }
+        document.querySelector('.products__image').onmouseleave = function(event) {
+            console.log(this.children[0])
+            this.children[0].classList.add('hoverend');
+            this.children[0].classList.remove('hover');
+        }
+    </script>
+</body>
+
+</html>

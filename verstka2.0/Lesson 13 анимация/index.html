@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Lesson 13</title>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">header</header>
+        <main class="main">
+            <div class="auto">
+                <div class="auto__body">
+                    <div class="auto_window_front"></div>
+                    <div class="auto_window_back"></div>
+
+                </div>
+                <div class="auto__wheel auto__wheel_front">колесо</div>
+                <div class="auto__wheel auto__wheel_back">колесо</div>
+                <div class="auto__wheel auto__wheel_middle">колесо</div>
+                <div class="auto__wheel auto__wheel_middle1">колесо</div>
+            </div>
+
+
+            <div class="button">
+                Я типа кнопка
+            </div>
+
+
+
+
+
+
+        </main>
+        <footer class="footer"></footer>
+    </div>
+    <script>
+        document.querySelector('.products__image').onmouseover = function(event) {
+            console.log(this.children[0])
+            this.children[0].classList.remove('hoverend');
+            this.children[0].classList.add('hover');
+        }
+        document.querySelector('.products__image').onmouseleave = function(event) {
+            console.log(this.children[0])
+            this.children[0].classList.add('hoverend');
+            this.children[0].classList.remove('hover');
+        }
+    </script>
+</body>
+
+</html>
