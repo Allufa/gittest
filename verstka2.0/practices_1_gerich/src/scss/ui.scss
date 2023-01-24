@@ -1,0 +1,95 @@
+//====================================================================================================
+//глобальный фон
+[data-bg] {
+    overflow: hidden;
+    position: relative;
+}
+
+.bg-item {
+    content: "";
+    background: url("@img/main-bg.jpg") center / cover no-repeat;
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 160%;
+}
+
+//шапка блока
+.block-header {
+    text-transform: capitalize;
+    @extend %cuf;
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    // .block-header__sub-title
+    &__sub-title {
+        color: $mainWhite;
+        font-weight: 700;
+        @include adaptiveValue("font-size",
+        23,
+        23);
+        line-height: 130%;
+        letter-spacing: 0.04em;
+        display: grid;
+        gap: 8px;
+        justify-items: center;
+        &::after {
+            @extend %ic;
+            content: "\e904";
+            color: $mainYellow;
+            font-size: em(9, 23);
+        }
+    }
+    // .block-header__title
+    &__title {
+        color: $mainYellow;
+        font-weight: 600;
+        @include adaptiveValue("font-size",
+        64,
+        64);
+        line-height: 130%;
+        letter-spacing: 0.04em;
+    }
+    &_big {
+        .block-header__title {
+            @include adaptiveValue("font-size",
+            90,
+            40);
+        }
+    }
+    &_left {
+        justify-items: stretch;
+        .block-header__sub-title {
+            justify-items: stretch;
+        }
+    }
+}
+
+//кнопка скролла и наверх
+.scroll {
+    @extend %cuf;
+    color: $mainYellow;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    display: grid;
+    justify-items: center;
+    gap: 24px;
+    &::before {
+        content: "";
+        height: 61px;
+        width: 1px;
+        background: rgb(220, 202, 135);
+        background: linear-gradient( 180deg, rgba(220, 202, 135, 1) 0%, rgba(220, 202, 135, 1) 50%, rgba(220, 202, 135, 0.24) 90%);
+    }
+}
+
+//стандартный текст
+[class*="__text"] {
+    line-height: 175%;
+    letter-spacing: 0.04em;
+}
+
+//====================================================================================================

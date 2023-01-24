@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://bagira.rosdex.ru/bitrix/templates/rosdex_new/css/style.min.css" rel="stylesheet" type="text/css">
+    <link href="https://bagira.rosdex.ru/bitrix/templates/rosdex_new/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+    <style>
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 400;
+            src: url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-regular.eot);
+            src: local(""), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-regular.eot?#iefix) format("embedded-opentype"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-regular.woff2) format("woff2"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-regular.woff) format("woff"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-regular.ttf) format("truetype"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-regular.svg#Roboto) format("svg");
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 700;
+            src: url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-700.eot);
+            src: local(""), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-700.eot?#iefix) format("embedded-opentype"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-700.woff2) format("woff2"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-700.woff) format("woff"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-700.ttf) format("truetype"), url(/verstka2.0/Lesson 14 flex//fonts/roboto-v30-cyrillic-ext-700.svg#Roboto) format("svg");
+            font-display: swap;
+        }
+        
+        body {
+            background: img('');
+        }
+        
+        @keyframes move {
+            100% {
+                transform: translate3d(0, 0, 1px) rotate(360deg);
+            }
+        }
+        
+        .background {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: #3E1E68;
+            overflow: hidden;
+        }
+        
+        .background span {
+            width: 22vmin;
+            height: 22vmin;
+            border-radius: 22vmin;
+            backface-visibility: hidden;
+            position: absolute;
+            animation: move;
+            animation-duration: 30;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        
+        .background span:nth-child(0) {
+            color: #E45A84;
+            top: 3%;
+            left: 4%;
+            animation-duration: 152s;
+            animation-delay: -178s;
+            transform-origin: 3vw -19vh;
+            box-shadow: 44vmin 0 5.567521751088682vmin currentColor;
+        }
+        
+        .background span:nth-child(1) {
+            color: #FFACAC;
+            top: 41%;
+            left: 28%;
+            animation-duration: 40s;
+            animation-delay: -113s;
+            transform-origin: -20vw 25vh;
+            box-shadow: 44vmin 0 6.206311031881731vmin currentColor;
+        }
+        
+        .background span:nth-child(2) {
+            color: #FFACAC;
+            top: 18%;
+            left: 77%;
+            animation-duration: 23s;
+            animation-delay: -37s;
+            transform-origin: -7vw -7vh;
+            box-shadow: 44vmin 0 5.807755983974849vmin currentColor;
+        }
+        
+        .background span:nth-child(3) {
+            color: #FFACAC;
+            top: 40%;
+            left: 82%;
+            animation-duration: 11s;
+            animation-delay: -105s;
+            transform-origin: 3vw 13vh;
+            box-shadow: -44vmin 0 6.160051213654769vmin currentColor;
+        }
+        
+        .background span:nth-child(4) {
+            color: #E45A84;
+            top: 42%;
+            left: 2%;
+            animation-duration: 161s;
+            animation-delay: -20s;
+            transform-origin: -7vw 7vh;
+            box-shadow: -44vmin 0 6.028277336547315vmin currentColor;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+
+        <div class="container-fluid flex-grow-1">
+
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md order-2 order-md-1 text-center text-md-left">
+                        © Зоосалон «Багира», 2010-2022<br> Любое использование материалов ресурса, без согласия администрации сайта, запрещено
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div class="modal show" style="display:block">
+        <div class="modal-dialog">
+            <div class="bx-system-auth-form">
+                <form name="system_auth_form6zOYVN" method="post" target="_top" action="/">
+                    <input type="hidden" name="backurl" value="/auth/">
+                    <input type="hidden" name="AUTH_FORM" value="Y">
+                    <input type="hidden" name="TYPE" value="AUTH">
+                    <label class="d-block my-15">
+			<div class="mb-5">Логин</div>
+			<input class="form-control" type="text" name="USER_LOGIN" maxlength="50" value="" size="17">
+		</label>
+                    <label class="d-block my-15">
+			<div class="mb-5">Пароль</div>
+			<input class="form-control" type="password" name="USER_PASSWORD" maxlength="255" size="17" autocomplete="off">
+				</label>
+                    <div class="d-flex flex-column align-items-center">
+                        <label class="d-block custom-control custom-checkbox mb-10">
+			<input class="custom-control-input" type="checkbox" id="USER_REMEMBER_frm" name="USER_REMEMBER" value="Y">
+			<div class="custom-control-label" for="USER_REMEMBER_frm" title="Запомнить меня на этом компьютере">Запомнить меня</div>
+		</label>
+                        <div class="my-10">
+                            <input class="btn btn-danger btn-mw" type="submit" name="Login" value="Войти">
+                        </div>
+                        <noindex><a href="#UserForgPass" data-toggle="modal" data-target="#UserForgPass" data-dismiss="modal">Забыли свой пароль?</a></noindex><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <form name="bform" method="post" target="_top" action="/auth/?forgot_password=yes">
+                <input type="hidden" name="backurl" value="/auth/">
+                <input type="hidden" name="AUTH_FORM" value="Y">
+                <input type="hidden" name="TYPE" value="SEND_PWD">
+                <label class="d-block my-15">
+			<div class="mb-5">Логин или email:</div>
+			<input class="form-control" type="text" name="USER_LOGIN" maxlength="50" value="">
+			<input type="hidden" name="USER_EMAIL">
+			<div class="mt-5"><small>Контрольная строка для смены пароля, а также ваши регистрационные данные, будут высланы вам по email.</small></div>
+		</label>
+                <div class="my-10 text-center">
+                    <input class="btn btn-danger btn-mw" type="submit" name="send_account_info" value="Выслать">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--<div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div> -->
+</body>
+
+</html>

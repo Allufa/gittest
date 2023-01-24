@@ -1,0 +1,118 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <link href="style.css" rel="stylesheet"> -->
+<!--  удалить все, что выше-->
+<!--  "columns-fullscreen вертикальный" экран готовятся/готовы-->
+<link href="templates/columns-fullscreen/style.css" rel="stylesheet">
+<div class="content rotate" ng-init="rowsCount = 6">
+    <div class="content image" ng-if="!fullscreenImage" ng-style="{'background-image': 'url(' + backgroundImage + ')'}">
+        <div class="orders fullscreen">
+            <div class="column">
+                <div class="header">
+                    <span>Готовятся</span>
+                </div>
+                <div class="orders-container">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: false} | limitToRange: rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-container" ng-if="orders.length - orders.lengthCompleted > rowsCount">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: false} | limitToRange: rowsCount : rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-container" ng-if="orders.length - orders.lengthCompleted > 2*rowsCount">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: false} | limitToRange: rowsCount : 2*rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-container" ng-if="orders.length - orders.lengthCompleted > 3*rowsCount">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: false} | limitToRange: rowsCount : 3*rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="header completed">
+                    <span>Готовы</span>
+                </div>
+                <div class="orders-container">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: true} | limitToRange: rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-container" ng-if="orders.lengthCompleted > rowsCount">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: true} | limitToRange: rowsCount : rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-container" ng-if="orders.lengthCompleted > 2*rowsCount">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: true} | limitToRange: rowsCount : 2*rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-container" ng-if="orders.lengthCompleted > 3*rowsCount">
+                    <div class="orders-body">
+                        <div class="order" ng-repeat="order in orders | filter: {completed: true} | limitToRange: rowsCount : 3*rowsCount track by $index" ng-class="{completed: order.completed}">
+                            <div class="order-prop order-number" ng-if="order">{{order.number}}</div>
+                            <div class="order-prop order-empty" ng-if="!order">.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup-container" ng-show="visibleSplashOrder">
+        <div class="popup-wrapper">
+            <div class="popup">
+                {{splashOrder.number}}
+            </div>
+        </div>
+    </div>
+
+    <div class="image" ng-if="fullscreenImage && !isVideo(fullscreenImage)" ng-style="{'background-image': 'url(' + fullscreenImage + ')'}"></div>
+    <video class="video" ng-if="fullscreenImage && isVideo(fullscreenImage)">
+		  <source src="{{fullscreenImage}}" type="video/mp4" ng-if="fullscreenImage && isVideo(fullscreenImage)">
+		  Your browser does not support the video tag.
+	  </video>
+    <div class="title-bar" ng-click="showOrder()">
+        <div class="logo" ng-style="{'background-image': 'url(' + logoImage + ')'}"></div>
+        <div class="time">{{time | date: 'HH:mm'}}</div>
+    </div>
+</div>
+<!-- удалить все, что ниже-->
+<!-- </body>
+
+</html> -->
