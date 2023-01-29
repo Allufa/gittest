@@ -41,8 +41,9 @@ data-href-blank - откроет ссылку в новом окне
 
 // Класс построения Select
 export class SelectConstructor {
-	constructor(props) {
+	constructor(props, data = null) {
 		let defaultConfig = {
+			init: true,
 			logging: false,
 		}
 		this.config = Object.assign(defaultConfig, props);
@@ -73,12 +74,11 @@ export class SelectConstructor {
 		}
 		this._this = this;
 		// Запуск инициализации
-		if (!document.documentElement.classList.contains('selects')) {
+		if (this.config.init) {
 			// Получение всех select на странице
-			const selectItems = document.querySelectorAll('select');
+			const selectItems = data ? document.querySelectorAll(data) : document.querySelectorAll('select');
 			if (selectItems.length) {
 				this.selectsInit(selectItems);
-				document.documentElement.classList.add('selects');
 				this.setLogging(`Проснулся, построил селектов: (${selectItems.length})`);
 			} else {
 				this.setLogging('Нет ни одного select. Сплю...zzZZZzZZz...');
@@ -101,24 +101,23 @@ export class SelectConstructor {
 		selectItems.forEach((originalSelect, index) => {
 			this.selectInit(originalSelect, index + 1);
 		});
-		const _this = this;
 		// Обработчики событий...
 		// ...при клике
 		document.addEventListener('click', function (e) {
-			_this.selectsActions(e);
-		});
+			this.selectsActions(e);
+		}.bind(this));
 		// ...при нажатии клавиши
 		document.addEventListener('keydown', function (e) {
-			_this.selectsActions(e);
-		});
+			this.selectsActions(e);
+		}.bind(this));
 		// ...при фокусе
 		document.addEventListener('focusin', function (e) {
-			_this.selectsActions(e);
-		});
+			this.selectsActions(e);
+		}.bind(this));
 		// ...при потере фокуса
 		document.addEventListener('focusout', function (e) {
-			_this.selectsActions(e);
-		});
+			this.selectsActions(e);
+		}.bind(this));
 	}
 	// Функция инициализации конкретного селекта
 	selectInit(originalSelect, index) {
@@ -131,7 +130,7 @@ export class SelectConstructor {
 		// Помещаем оригинальный селект в оболочку
 		selectItem.appendChild(originalSelect);
 		// Скрываем оригинальный селект
-		//originalSelect.hidden = true;
+		originalSelect.hidden = true;
 		// Присваиваем уникальный ID
 		index ? originalSelect.dataset.id = index : null;
 
