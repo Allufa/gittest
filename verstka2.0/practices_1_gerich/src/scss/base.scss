@@ -3,12 +3,15 @@
 @import "base/forms/forms";
 // Стили спойлеров
 // @import "base/spollers";
-// Стили табов
+//Стили попапов
+@import "base/popup"; // Стили табов
 // @import "base/tabs";
 // Стили карт
 // @import "base/maps";
 // Стили блока "показать еще"
 // @import "base/showmore";
+//Стили блока "календарь"
+@import "libs/datepicker";
 // Стили для полноэкранного блока
 @import "base/fullscreen";
 // Стили для отзывчивых картинок (IBG)

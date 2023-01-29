@@ -1,13 +1,21 @@
-// Импорт функционала ==============================================================================================================================================================================================================================================================================================================================
+// Подключение функционала "Чертогов Фрилансера"
 // Вспомогательные функции
-import { isMobile, _slideUp, _slideDown, _slideToggle } from "../functions.js";
-// Модуль попапа
-// import { popupItem } from "../popups.js";
+import { isMobile, _slideUp, initPopups, _slideDown, _slideToggle } from "../functions.js";
 // Модуль прокрутки к блоку
 import { gotoBlock } from "../scroll/gotoblock.js";
 // Класс select
 import { SelectConstructor } from "../../libs/select.js";
+// Класс масок
+import { InputMask } from "../../libs/inputmask.js";
+// Функционал попапа
+const popupItem = initPopups();
 //==============================================================================================================================================================================================================================================================================================================================
+// Объект модулей форм для экспорта
+export const formsModules = {
+	inputMaskModule: null,
+	selectModule: null
+}
+//================================================================================================================================================================================================================================================================================================================================
 
 /*
 Чтобы поле участвовало в валидации добавляем атрибут data-required
@@ -34,8 +42,8 @@ export function formFieldsInit() {
 			if (targetElement.dataset.placeholder) {
 				targetElement.placeholder = '';
 			}
-			targetElement.classList.add('_focus');
-			targetElement.parentElement.classList.add('_focus');
+			targetElement.classList.add('_form-focus');
+			targetElement.parentElement.classList.add('_form-focus');
 
 			formValidate.removeError(targetElement);
 		}
@@ -46,8 +54,8 @@ export function formFieldsInit() {
 			if (targetElement.dataset.placeholder) {
 				targetElement.placeholder = targetElement.dataset.placeholder;
 			}
-			targetElement.classList.remove('_focus');
-			targetElement.parentElement.classList.remove('_focus');
+			targetElement.classList.remove('_form-focus');
+			targetElement.parentElement.classList.remove('_form-focus');
 
 			// Моментальная валидация
 			if (targetElement.hasAttribute('data-validate')) {
@@ -63,7 +71,7 @@ export let formValidate = {
 		let formRequiredItems = form.querySelectorAll('*[data-required]');
 		if (formRequiredItems.length) {
 			formRequiredItems.forEach(formRequiredItem => {
-				if (formRequiredItem.offsetParent !== null || formRequiredItem.tagName === "SELECT") {
+				if ((formRequiredItem.offsetParent !== null || formRequiredItem.tagName === "SELECT") && !formRequiredItem.disabled) {
 					error += this.validateInput(formRequiredItem);
 				}
 			});
@@ -110,26 +118,33 @@ export let formValidate = {
 		}
 	},
 	formClean(form) {
-		let inputs = form.querySelectorAll('input,textarea');
-		for (let index = 0; index < inputs.length; index++) {
-			const el = inputs[index];
-			el.parentElement.classList.remove('_focus');
-			el.classList.remove('_focus');
-			el.value = el.dataset.placeholder;
-		}
-		let checkboxes = form.querySelectorAll('.checkbox__input');
-		if (checkboxes.length > 0) {
-			for (let index = 0; index < checkboxes.length; index++) {
-				const checkbox = checkboxes[index];
-				checkbox.checked = false;
+		form.reset();
+		setTimeout(() => {
+			let inputs = form.querySelectorAll('input,textarea');
+			for (let index = 0; index < inputs.length; index++) {
+				const el = inputs[index];
+				el.parentElement.classList.remove('_form-focus');
+				el.classList.remove('_form-focus');
+				formValidate.removeError(el);
+				el.value = el.dataset.placeholder;
 			}
-		}
-		let selects = form.querySelectorAll('select');
-		if (selects.length > 0) {
-			for (let index = 0; index < selects.length; index++) {
-				const select = selects[index];
+			let checkboxes = form.querySelectorAll('.checkbox__input');
+			if (checkboxes.length > 0) {
+				for (let index = 0; index < checkboxes.length; index++) {
+					const checkbox = checkboxes[index];
+					checkbox.checked = false;
+				}
 			}
-		}
+			if (formsModules.selectModule) {
+				let selects = form.querySelectorAll('.select');
+				if (selects.length) {
+					for (let index = 0; index < selects.length; index++) {
+						const select = selects[index].querySelector('select');
+						formsModules.selectModule.selectBuild(select);
+					}
+				}
+			}
+		}, 0);
 	},
 	emailTest(formRequiredItem) {
 		return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(formRequiredItem.value);
@@ -140,17 +155,20 @@ export function formSubmit(validate) {
 	const forms = document.forms;
 	if (forms.length) {
 		for (const form of forms) {
-			form.addEventListener('submit', formSubmitAction);
+			form.addEventListener('submit', function (e) {
+				const form = e.target;
+				formSubmitAction(form, e);
+			});
+			form.addEventListener('reset', function (e) {
+				const form = e.target;
+				formValidate.formClean(form);
+			});
 		}
 	}
-	function formSubmitAction(e) {
-		const form = e.target;
-		formSubmitItem(form, e);
-	}
-	async function formSubmitItem(form, e) {
+	async function formSubmitAction(form, e) {
 		const error = validate ? formValidate.getErrors(form) : 0;
 		if (error === 0) {
-			const message = form.getAttribute('data-message');
+			const popup = form.dataset.popupMassage;
 			const ajax = form.hasAttribute('data-ajax');
 			//SendForm
 			if (ajax) {
@@ -167,9 +185,9 @@ export function formSubmit(validate) {
 				if (response.ok) {
 					let responseResult = await response.json();
 					form.classList.remove('_sending');
-					if (message) {
+					if (popup) {
 						// Нужно подключить зависимость
-						popupItem.open(`#${message}`);
+						popupItem.open(`${popup}`);
 					}
 					formValidate.formClean(form);
 				} else {
@@ -177,12 +195,12 @@ export function formSubmit(validate) {
 					form.classList.remove('_sending');
 				}
 			}
-			// If test
-			if (form.hasAttribute('data-test')) {
+			// Если режим разработки
+			if (form.hasAttribute('data-dev')) {
 				e.preventDefault();
-				if (message) {
+				if (popup) {
 					// Нужно подключить зависимость
-					popupItem.open(`#${message}`);
+					popupItem.open(`${popup}`);
 				}
 				formValidate.formClean(form);
 			}
@@ -196,12 +214,17 @@ export function formSubmit(validate) {
 		}
 	}
 }
-// Модуль работы с select 
-export function formSelect(logging) {
-	const selectModule = new SelectConstructor({
+/* Маски для полей (в работе) */
+export function formMasks(logging) {
+	formsModules.inputMaskModule = new InputMask({
 		logging: logging
 	});
-	return selectModule;
+}
+/* Модуль работы с select */
+export function formSelect(logging) {
+	formsModules.selectModule = new SelectConstructor({
+		logging: logging
+	});
 }
 /* Модуь формы "показать пароль" */
 export function formViewpass() {

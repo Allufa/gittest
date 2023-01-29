@@ -5,6 +5,24 @@
     position: relative;
 }
 
+[data-decor] {
+    &::before {
+        content: "";
+        background: url("@img/main-decor.svg") 0 0 /100% no-repeat;
+        width: rem(145);
+        height: rem(145);
+        animation: rotate 30s infinite linear;
+    }
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
 .bg-item {
     content: "";
     background: url("@img/main-bg.jpg") center / cover no-repeat;
@@ -47,7 +65,7 @@
         font-weight: 600;
         @include adaptiveValue("font-size",
         64,
-        64);
+        35);
         line-height: 130%;
         letter-spacing: 0.04em;
     }
