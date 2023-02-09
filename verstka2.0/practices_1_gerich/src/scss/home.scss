@@ -908,34 +908,111 @@
 }
 
 //====================================================================================================
+//========================================================================================================================================================
 .gallery {
+    @include adaptiveValue("padding-top",
+    128,
+    40);
+    @include adaptiveValue("padding-bottom",
+    128,
+    40);
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(4, 4, 4, 0.5);
+        z-index: 3;
+    }
+    // .gallery__top
+    &__top {}
+    // .gallery__body
+    &__body {
+        min-width: 0;
+    }
     // .gallery__container
-    &__container {}
+    &__container {
+        z-index: 5;
+        display: grid;
+        row-gap: 30px;
+        @media (min-width: $tablet) {
+            column-gap: rem(64);
+            grid-template-columns: rem(490) 1fr;
+        }
+    }
     // .gallery__content
-    &__content {}
+    &__content {
+        align-self: center;
+        display: grid;
+        gap: rem(24);
+    }
     // .gallery__header
     &__header {}
     // .gallery__text
     &__text {}
     // .gallery__button
-    &__button {}
+    &__button {
+        justify-self: start;
+    }
     // .gallery__slider
-    &__slider {}
+    &__slider {
+        &.swiper {
+            //overflow: visible;
+        }
+    }
     // .gallery__swiper
     &__swiper {}
-    // .gallery__slide
-    &__slide {}
+    // .gallery__slide-ibg
+    &__slide-ibg {
+        height: 447px;
+        flex: 0 0 300px;
+        width: 300px;
+        border: 2px solid rgba(220, 202, 135, 0.2);
+        position: relative;
+        &::before {
+            @extend %ic;
+            @extend ._icon-instagram;
+            color: #fff;
+            z-index: 6;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-size: rem(43);
+            opacity: 0;
+            transition: all 0.3s ease 0s;
+            transform: translate(-50%, -50%);
+        }
+        &::after {
+            content: "";
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: all 0.3s ease 0s;
+            z-index: 5;
+            background: linear-gradient(207.55deg, rgba(0, 0, 0, 0.75) 1.5%, rgba(0, 0, 0, 0.64) 98.62%);
+        }
+        @media (any-hover: hover) {
+            &:hover {
+                &::after {
+                    opacity: 1;
+                }
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+        @media (max-width: $mobileSmall) {
+            height: 400px;
+            flex: 0 0 250px;
+            width: 250px;
+        }
+    }
 }
-
-.block-header {
-    // .block-header_left
-    &_left {}
-    // .block-header__sub-title
-    &__sub-title {}
-    // .block-header__title
-    &__title {}
-}
-
-.button {}
 
 //====================================================================================================
