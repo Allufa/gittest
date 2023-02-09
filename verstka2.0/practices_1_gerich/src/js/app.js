@@ -135,7 +135,7 @@ import './files/scroll/simplebar.js';
 Документация плагина: https://github.com/verlok/vanilla-lazyload
 Сниппет(HTML):
 */
-// import './files/scroll/lazyload.js';
+import './files/scroll/lazyload.js';
 
 // Функции работы скроллом ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 import * as flsScroll from "./files/scroll/scroll.js";
@@ -144,7 +144,7 @@ import * as flsScroll from "./files/scroll/scroll.js";
 // Документация по работе в шаблоне: js/libs/watcher.js
 // Сниппет(HTML):
 // Для включения ??? (подсказок в консоли), указать параметр true
-// flsScroll.scrollWatcher(false);
+flsScroll.scrollWatcher(true);
 
 // Плавная навигация по странице
 flsScroll.pageNavigation();
